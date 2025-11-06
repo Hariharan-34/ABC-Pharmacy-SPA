@@ -1,0 +1,128 @@
+<div class="medicine-container">
+  <h2>Medicine Management</h2>
+  
+  <!-- Search Section -->
+  <div class="search-section">
+    <input 
+      type="text" 
+      [(ngModel)]="search" 
+      placeholder="Search medicines by name..." 
+      class="search-input"
+      (keyup.enter)="searchMedicines()"
+      (input)="searchMedicines()">
+    <button (click)="searchMedicines()" class="search-btn">Search</button>
+  </div>
+
+  <!-- Add Medicine Section -->
+  <div class="add-medicine-section">
+    <h3>Add New Medicine</h3>
+    <div class="form-row">
+      <div class="form-field">
+        <label for="medicineName" class="form-label">Medicine Name:</label>
+        <input 
+          id="medicineName"
+          type="text" 
+          [(ngModel)]="newMedicine.fullName" 
+          placeholder="Enter medicine name" 
+          class="form-input">
+      </div>
+      <div class="form-field">
+        <label for="brand" class="form-label">Brand:</label>
+        <input 
+          id="brand"
+          type="text" 
+          [(ngModel)]="newMedicine.brand" 
+          placeholder="Enter brand name" 
+          class="form-input">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-field">
+        <label for="quantity" class="form-label">Quantity:</label>
+        <input 
+          id="quantity"
+          type="number" 
+          [(ngModel)]="newMedicine.quantity" 
+          placeholder="Enter quantity" 
+          class="form-input">
+      </div>
+      <div class="form-field">
+        <label for="price" class="form-label">Price ($):</label>
+        <input 
+          id="price"
+          type="number" 
+          [(ngModel)]="newMedicine.price" 
+          placeholder="Enter price" 
+          class="form-input" 
+          step="0.01">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-field">
+        <label for="expiryDate" class="form-label">Expiry Date:</label>
+        <input 
+          id="expiryDate"
+          type="date" 
+          [(ngModel)]="newMedicine.expiryDate" 
+          class="form-input">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-field">
+        <label for="notes" class="form-label">Notes:</label>
+        <textarea 
+          id="notes"
+          [(ngModel)]="newMedicine.notes" 
+          placeholder="Enter additional notes or description"
+          class="form-textarea"></textarea>
+      </div>
+    </div>
+    <button (click)="addMedicine()" class="add-btn">Add Medicine</button>
+  </div>
+
+  <!-- Medicines List -->
+  <div class="medicines-list">
+    <h3>Medicines ({{ medicines.length }})</h3>
+    <div *ngIf="medicines.length === 0" class="no-medicines">
+      No medicines found. The API might be unavailable or returning empty data.
+    </div>
+    
+    <div *ngIf="medicines.length > 0" class="medicines-grid">
+      <div *ngFor="let medicine of medicines" class="medicine-card" [class]="getRowClass(medicine)">
+        <div class="medicine-header">
+          <h4 class="medicine-name">{{ medicine.fullName }}</h4>
+          <span class="medicine-id">ID: {{ medicine.id || 'N/A' }}</span>
+        </div>
+        <div class="medicine-details">
+          <div class="detail-item">
+            <label>Brand:</label>
+            <span>{{ medicine.brand }}</span>
+          </div>
+          <div class="detail-item">
+            <label>Quantity:</label>
+            <span class="quantity" 
+                  [style.background-color]="medicine.quantity < 10 ? '#ffeb3b' : '#e9ecef'"
+                  [style.color]="medicine.quantity < 10 ? '#d84315' : '#212529'">
+              {{ medicine.quantity }}
+            </span>
+          </div>
+          <div class="detail-item">
+            <label>Price:</label>
+            <span class="price">${{ medicine.price }}</span>
+          </div>
+          <div class="detail-item">
+            <label>Expiry Date:</label>
+            <span class="expiry-date" 
+                  [style.background-color]="isExpired(medicine) ? '#ff5722' : 'transparent'"
+                  [style.color]="isExpired(medicine) ? 'white' : '#212529'"
+                  [style.padding]="isExpired(medicine) ? '2px 6px' : '0'"
+                  [style.border-radius]="isExpired(medicine) ? '3px' : '0'">
+              {{ medicine.expiryDate | date:'shortDate' }}
+            </span>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
