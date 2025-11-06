@@ -1,0 +1,34 @@
+[
+  {
+    "ContainingType": "ABCPharmacyAPI.Controllers.MedicinesController",
+    "Method": "GetAll",
+    "RelativePath": "api/Medicines",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "search",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "ABCPharmacyAPI.Controllers.MedicinesController",
+    "Method": "AddMedicine",
+    "RelativePath": "api/Medicines",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "medicine",
+        "Type": "ABCPharmacyAPI.Models.Medicine",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

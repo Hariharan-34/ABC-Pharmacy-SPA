@@ -1,0 +1,20 @@
+[
+  {
+    "Id": 1,
+    "FullName": "new",
+    "Notes": "test",
+    "ExpiryDate": "2025-11-06T16:04:00.815Z",
+    "Quantity": 1,
+    "Price": 5,
+    "Brand": "newbrand"
+  },
+  {
+    "Id": 2,
+    "FullName": "cough",
+    "Notes": "cold",
+    "ExpiryDate": "2025-11-06T00:00:00",
+    "Quantity": 2,
+    "Price": 10,
+    "Brand": "apollo"
+  }
+]
